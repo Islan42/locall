@@ -161,3 +161,6 @@ DATABASES['default'] = dj_database_url.config(
     conn_max_age=600,
     conn_health_checks=True,
 )
+
+ALLOWED_HOSTS = ['web-production-2971.up.railway.app', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-2971.up.railway.app']
