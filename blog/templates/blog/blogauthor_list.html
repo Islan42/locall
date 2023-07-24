@@ -1,0 +1,14 @@
+{% extends 'blog/base_template.html' %}
+
+{% block content %}
+	<h1>List of Bloggers</h1>
+	{% if blogauthor_list %}
+		<ul>
+			{% for author in blogauthor_list %}
+				<li><a href="{{ author.get_absolute_url }}">{{ author }}</a> ({{ author.blogpost_set.all.count }})</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>There are no bloggers yet. Please, come back later ;)</p>
+	{% endif %}
+{% endblock %}

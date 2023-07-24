@@ -1,0 +1,16 @@
+{% extends 'blog/base_template.html' %}
+
+{% block content %}
+	<h2>Blogger: {{ blogauthor }}</h2>
+	<hr/>
+	<h3>Bio</h3>
+	<p>{{ blogauthor.bio }}</p>
+	
+	<hr/>
+	<h3>Posts</h3>
+	<ul>
+		{% for post in blogauthor.blogpost_set.all %}
+			<li><a href="{{ post.get_absolute_url }}">{{ post }}</a> ({{ post.post_date }})</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
