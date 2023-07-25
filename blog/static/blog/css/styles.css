@@ -1,0 +1,14 @@
+body{
+  font-family: sans-serif;
+  padding: 1rem;
+}
+
+body h1 {
+  margin-top: 0;
+  color: black;
+}
+
+h1 a {
+  color: black;
+  text-decoration: none;
+}

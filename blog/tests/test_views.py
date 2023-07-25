@@ -43,11 +43,28 @@ class BlogPostListViewTest(TestCase):
 
 class BlogCommentCreateViewTest(TestCase):
     @classmethod
-    def setUpTestData(cls) -> None:
-        user = User.objects.create(username='Teste', password='123456')
+    def setUpTestData(cls):
+        user = User.objects.create_user(username='teste', password='123456')
         author = BlogAuthor.objects.create(user=user, bio='Lorem Ipsum Dolor Sit Amet')
         post = BlogPost.objects.create(name='Lorem', description='Lorem Ipsum Dolor Sit Amet', author=author, post_date=datetime.now())
    
     def test_redirect_if_not_logged_in(self):
         response = self.client.get(reverse('comment-create', args=['1']))
         self.assertRedirects(response, '/accounts/login/?next=/blog/b/1/create/')
+    
+    def test_logged_in_uses_correct_template(self):
+        login = self.client.login(username='teste', password='123456')
+        response = self.client.get(reverse('comment-create', args=['1']))
+        
+        self.assertEqual(str(response.context['user']), 'teste')
+        self.assertEqual(response.status_code, 200)
+        
+        self.assertTemplateUsed(response, 'blog/blogcomment_form.html')
+    
+    def test_associated_blog_post(self):
+        login = self.client.login(username='teste', password='123456')
+        response = self.client.get(reverse('comment-create', args=['1']))
+        
+        self.assertTrue('blog' in response.context)
+        self.assertEqual(response.context['blog'].name, 'Lorem')
+        

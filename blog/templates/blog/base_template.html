@@ -5,10 +5,13 @@
 	{% endblock %}
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'blog/css/styles.css' %}" />
+	<link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 </head>
 <body>
 	<header>
-		<h1>The Amazing Blog for MDN Ass</h1>
+		<h1><a href="/">The Amazing Blog for MDN Ass</a></h1>
 	</header>
 	<main>
 		<aside>
