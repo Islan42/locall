@@ -9,7 +9,13 @@
 	{% for comment in blogpost.blogcomment_set.all %}
 		<hr/>
 		<div class="comment">
-			<p>{{ comment.author }}<br/>{{ comment.post_date }}<br/>{{ comment }}</p>
+			<div class="comment-header">
+				<p><strong>{{ comment.author }}</strong></p>
+				<p>{{ comment.post_date }}</p>
+			</div>
+			<div class="comment-body">
+				<p>{{ comment }}</p>
+			</div>
 		</div>
 	{% endfor %}
 	
